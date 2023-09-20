@@ -7,11 +7,9 @@ int main(){
 
     int nVoo, selectVaga, i, consulVoo, reserVoo, cancelVoo; //nVoo = 3;
 
-    //Criar o trecho para cadastrar voos
     //Voos disponiveis
     int voo[] = {42, 77, 214};
 
-    //Criar o trecho para  cadastrar as poltronas
     //Vagas totais nos voos
     int assenTemp;
 
@@ -85,7 +83,6 @@ int main(){
             }
             break;
         
-        //Adicionar verificação da disponibilidade da poltrona antes de "mudar" o status da vaga
         case 2:
             printf("\n");
             for(i = 0; i < 3; i++){
@@ -137,7 +134,6 @@ int main(){
             }
             break;
 
-        //Adicionar verificação da disponibilidade da poltrona antes de "mudar" o status da vaga
         case 3:
             printf("\n");
             for(i = 0; i < 3; i++){
