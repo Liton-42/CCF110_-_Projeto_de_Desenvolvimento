@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "structs.h": "c",
+        "locale.h": "c",
+        "stdlib.h": "c",
+        "funcoes.h": "c",
+        "avioes.h": "c",
+        "aeroporto.h": "c"
+    }
+}
