@@ -1,9 +1,5 @@
-typedef struct limitesAeroporto{
-    int quantidadeVoos;
-    int maximoAssentos;
-}AEROPORTO;
-
-typedef struct infoVoos{
-    int identificacaoVoo;
-    int ocupacaoMaximaVoo;
-}AVIOES;
+// typedef struct informacoesReserva{
+//     char nome[50];
+//     char cpf[11];
+//     int assentoReservado;
+// }RESERVA;
