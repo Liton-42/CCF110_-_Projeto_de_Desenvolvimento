@@ -29,15 +29,17 @@ void ID_VOOS(AEROPORTO *ponteiro_aeroporto, AVIOES avioes[]){
     }
 }
 
-void LIBERAR_POLTRONAS(AEROPORTO *ponteiro_aeroporto, int *ponteiro_ocupacaoMaximaAeroporto){
+void LIBERAR_POLTRONAS(AEROPORTO *ponteiro_aeroporto, int ocupacaoMaximaAeroporto[][ponteiro_aeroporto->maximoAssentos + 1]){
     int resetarAssentos;
 
     printf("Resetar assentos? (0 = Não, 1 = Sim) ");
     scanf("%d", &resetarAssentos);
 
     if (resetarAssentos == 1){
-        for(i = 0; i < (ponteiro_aeroporto->quantidadeVoos * (ponteiro_aeroporto->maximoAssentos + 1)); i++){
-            *(ponteiro_ocupacaoMaximaAeroporto + i) = 0;
+        for(i = 0; i < ponteiro_aeroporto->quantidadeVoos; i++){
+            for (j = 0; j < (ponteiro_aeroporto->maximoAssentos + 1); j++){
+                ocupacaoMaximaAeroporto[i][j] = 0;
+            }
         }
     }
 }
@@ -49,8 +51,8 @@ void OCUPACAO_MAXIMA_VOO(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes,
     }
 }
 
-int CONSULTAR_VAGAS(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes){
-    int indiceVoo, consultarVoo;
+void CONSULTAR_VAGAS(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, int ocupacaoMaximaVoo[], int ocupacaoMaximaAeroporto[][ponteiro_aeroporto->maximoAssentos]){
+    int indiceVoo, consultarVoo, contVagas = 0;
 
     for(i = 0; i < ponteiro_aeroporto->quantidadeVoos; i++){
         printf("Voo %d\n", (ponteiro_avioes + i)->identificacaoVoo);
@@ -65,7 +67,13 @@ int CONSULTAR_VAGAS(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes){
         }
     }
 
-    return indiceVoo;
+    for(j = 1; j < ocupacaoMaximaVoo[indiceVoo] + 1; j++){
+        if(ocupacaoMaximaAeroporto[indiceVoo][j] == 0){
+            contVagas++;
+        }
+    }
+
+    printf("Quantidade de poltronas livres: %d", contVagas);
 }
 
 int ESCOLHER_VOO_RESERVAR(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes){

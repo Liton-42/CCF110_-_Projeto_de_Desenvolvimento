@@ -20,10 +20,9 @@ int main(){
 
     aeroporto.maximoAssentos = CAPACIDADE_MAXIMA();
 
-    int ocupacaoMaximaAeroporto[aeroporto.quantidadeVoos][aeroporto.maximoAssentos + 1], *ponteiro_ocupacaoMaximaAeroporto;
-    ponteiro_ocupacaoMaximaAeroporto = &ocupacaoMaximaAeroporto[0][0];
+    int ocupacaoMaximaAeroporto[aeroporto.quantidadeVoos][aeroporto.maximoAssentos + 1];
 
-    LIBERAR_POLTRONAS(ponteiro_aeroporto, ponteiro_ocupacaoMaximaAeroporto);   
+    LIBERAR_POLTRONAS(ponteiro_aeroporto, ocupacaoMaximaAeroporto);
 
     int ocupacaoMaximaVoo[aeroporto.quantidadeVoos];
 
@@ -45,14 +44,7 @@ int main(){
     switch (select){
         case 1:
             printf("\n");
-            indiceVoo = CONSULTAR_VAGAS(ponteiro_aeroporto, ponteiro_avioes);
-            
-            for(j = 1; j < ocupacaoMaximaVoo[indiceVoo] + 1; j++){
-                if(ocupacaoMaximaAeroporto[indiceVoo][j] == 0){
-                    contVagas++;
-                }
-            }
-            printf("Quantidade de poltronas livres: %d", contVagas);
+            CONSULTAR_VAGAS(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
             
             break;
         
