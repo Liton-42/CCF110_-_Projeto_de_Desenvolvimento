@@ -145,6 +145,7 @@ void CANCELAR_ASSENTO(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, in
 void MENU(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, int ocupacaoMaximaVoo[], int ocupacaoMaximaAeroporto[][ponteiro_aeroporto->maximoAssentos + 1]){
     int select;
 
+    printf("\n");
     printf("Informe a operação que deseja realizar:\n");
     printf(" 1. Consultar vagas\n");
     printf(" 2. Reservar assento\n");
@@ -153,26 +154,41 @@ void MENU(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, int ocupacaoMa
 
     scanf("%d", &select);
 
-    switch (select){
-        case 1:
-            printf("\n");
-            CONSULTAR_VAGAS(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
+    while (select != 4){
+        switch (select){
+            case 1:
+                printf("\n");
+                CONSULTAR_VAGAS(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
+                
+                break;
             
-            break;
-        
-        case 2:
-            printf("\n");
-            RESERVAR_ASSENTO(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
+            case 2:
+                printf("\n");
+                RESERVAR_ASSENTO(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
 
-            break;
+                break;
 
-        case 3:
-            printf("\n");
-            CANCELAR_ASSENTO(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
+            case 3:
+                printf("\n");
+                CANCELAR_ASSENTO(ponteiro_aeroporto, ponteiro_avioes, ocupacaoMaximaVoo, ocupacaoMaximaAeroporto);
 
-            break;
+                break;
 
-        default:
-            break;
+            case 4:
+                break;
+            
+            default:
+                printf("\nSeleção inválida.");
+
+                break;
+        }
+    printf("\n\n");
+    printf("Informe a operação que deseja realizar:\n");
+    printf(" 1. Consultar vagas\n");
+    printf(" 2. Reservar assento\n");
+    printf(" 3. Cancelar reserva\n");
+    printf(" 4. Sair\n");
+
+        scanf("%d", &select);
     }
 }
