@@ -9,7 +9,7 @@ Criar um sisterma de gerenciamento de reservas em voos.
 
 ### Problemas Conhecidos:
 Por ora, temos como limitações:
-- A verificação de reservas (conseguimos ver os assentos reservados contudo conseguimos "re-reservar" esses assentos).
+- A implementação de arquivos para salvar as operações efetuadas.
 
 ### Planos futuros:
 Planejamos como futuras implementações adicionar as informações referentes ao assento reservado por exemplo identificação do passageiro.

@@ -23,7 +23,7 @@ int main(){
 
     int ocupacaoMaximaAeroporto[aeroporto.quantidadeVoos][aeroporto.maximoAssentos + 1];
 
-    LIBERAR_POLTRONAS(ponteiro_aeroporto, ocupacaoMaximaAeroporto);
+    LIBERAR_POLTRONAS(ponteiro_aeroporto, avioes, ocupacaoMaximaAeroporto);
 
     int ocupacaoMaximaVoo[aeroporto.quantidadeVoos];
 
