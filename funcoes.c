@@ -29,19 +29,25 @@ void ID_VOOS(AEROPORTO *ponteiro_aeroporto, AVIOES avioes[]){
     }
 }
 
-void LIBERAR_POLTRONAS(AEROPORTO *ponteiro_aeroporto, int ocupacaoMaximaAeroporto[][ponteiro_aeroporto->maximoAssentos + 1]){
+void LIBERAR_POLTRONAS(AEROPORTO *ponteiro_aeroporto, AVIOES avioes[], int ocupacaoMaximaAeroporto[][ponteiro_aeroporto->maximoAssentos + 1]){
     int resetarAssentos;
 
-    printf("Resetar assentos? (0 = Não, 1 = Sim) ");
-    scanf("%d", &resetarAssentos);
+    //printf("Resetar assentos? (0 = Não, 1 = Sim) ");
+    //scanf("%d", &resetarAssentos);
 
-    if (resetarAssentos == 1){
-        for(i = 0; i < ponteiro_aeroporto->quantidadeVoos; i++){
-            for (j = 0; j < (ponteiro_aeroporto->maximoAssentos + 1); j++){
-                ocupacaoMaximaAeroporto[i][j] = 0;
-            }
+    //if (resetarAssentos == 1){
+    for(i = 0; i < ponteiro_aeroporto->quantidadeVoos; i++){
+        for (j = 0; j < (ponteiro_aeroporto->maximoAssentos + 1); j++){
+            ocupacaoMaximaAeroporto[i][j] = 0;
         }
     }
+
+    for (i = 0; i < ponteiro_aeroporto->quantidadeVoos; i++){
+        for (j = 0; j < (ponteiro_aeroporto->maximoAssentos + 1); j++){
+            ocupacaoMaximaAeroporto[i][0] = avioes[i].identificacaoVoo;
+        }
+    }
+    //}
 }
 
 void OCUPACAO_MAXIMA_VOO(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, int ocupacaoMaximaVoo[]){
@@ -102,6 +108,12 @@ void RESERVAR_ASSENTO(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, in
     }
 
     while(reservarAssento > 0){
+        while (ocupacaoMaximaAeroporto[indiceVoo][reservarAssento] == 1){
+            printf("\nO assento já está reservado.");
+            printf("\nInforme a uma poltrona valida (para encerrar digite 0): ");
+            scanf("%d", &reservarAssento);
+        }
+
         ocupacaoMaximaAeroporto[indiceVoo][reservarAssento] = 1;
 
         printf("\nInforme a poltrona que será reservada (para encerrar digite 0): ");
@@ -135,7 +147,13 @@ void CANCELAR_ASSENTO(AEROPORTO *ponteiro_aeroporto, AVIOES *ponteiro_avioes, in
     scanf("%d", &cancelarAssento);
 
     while(cancelarAssento > 0){
-        ocupacaoMaximaAeroporto[indiceVoo][cancelarAssento] = 1;
+        while (ocupacaoMaximaAeroporto[indiceVoo][cancelarAssento] == 0){
+            printf("\nO assento já está vago.");
+            printf("\nInforme a uma poltrona valida (para encerrar digite 0): ");
+            scanf("%d", &cancelarAssento);
+        }
+
+        ocupacaoMaximaAeroporto[indiceVoo][cancelarAssento] = 0;
 
         printf("\nInforme a poltrona que será reservada (para encerrar digite 0): ");
         scanf("%d", &cancelarAssento);
